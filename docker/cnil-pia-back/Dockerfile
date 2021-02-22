@@ -13,15 +13,15 @@ RUN apt-get update \
 
 RUN git clone --branch $PIA_VERSION https://github.com/LINCnil/pia-back.git --depth 1 /var/www/
 
-# COPY database.yml /var/www/config/database.yml
-# COPY application.yml /var/www/config/application.yml
+COPY docker/cnil-pia-back/database.yml /var/www/config/database.yml
+COPY docker/cnil-pia-back/application.yml /var/www/config/application.yml
 
 WORKDIR /var/www/
 
 RUN gem install bundler
 RUN bundle install
 
-COPY entrypoint /entrypoint
+COPY docker/cnil-pia-back/entrypoint /entrypoint
 RUN chmod +x /entrypoint
 ENTRYPOINT ["/entrypoint"]
 

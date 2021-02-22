@@ -13,8 +13,8 @@ RUN apt-get update \
 
 RUN git clone --branch $PIA_VERSION https://github.com/LINCnil/pia-back.git --depth 1 /var/www/
 
-COPY database.yml /var/www/config/database.yml
-COPY application.yml /var/www/config/application.yml
+# COPY database.yml /var/www/config/database.yml
+# COPY application.yml /var/www/config/application.yml
 
 WORKDIR /var/www/
 

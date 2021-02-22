@@ -1,11 +1,11 @@
 development:
   adapter:  postgresql
-  host:     <%= ENV['DATABASE_HOST'] %>
+  host:     'postgresql-efvp-experimentation.apps.exp.lab.pocquebec.org'
   encoding: unicode
-  database: pia_development
+  database: efvp-db
   pool:     5
-  username: <%= ENV['DATABASE_USERNAME'] %>
-  password: <%= ENV['DATABASE_PASSWORD'] %>
+  username: postgresql
+  password: postgresql
   template: template0
 
 test:

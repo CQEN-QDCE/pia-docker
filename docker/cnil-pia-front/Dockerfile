@@ -38,7 +38,7 @@ COPY docker/cnil-pia-front/conf/cnil_pia.conf /etc/nginx/conf.d/default.conf
 
 RUN mkdir -p /var/www && chown www-data. /var/www/
 
-USER www-data
+# USER www-data
 
 RUN git clone --branch $PIA_VERSION https://github.com/LINCnil/pia.git --depth 1 /var/www/pia
 

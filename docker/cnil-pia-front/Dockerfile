@@ -36,7 +36,7 @@ RUN apt-get update -y \
 
 COPY docker/cnil-pia-front/conf/cnil_pia.conf /etc/nginx/conf.d/default.conf
 
-RUN chown www-data. /var/www/
+RUN chown www-data /var/www/
 
 USER www-data
 

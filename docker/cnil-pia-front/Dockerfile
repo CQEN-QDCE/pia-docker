@@ -35,8 +35,7 @@ RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources
 RUN apt-get update -y \
  && apt-get install yarn -y
 
-RUN useradd -u 5000 www-data \
- && mkdir -p /var/run/nginx /var/tmp/nginx \
+RUN mkdir -p /var/run/nginx /var/tmp/nginx \
  && chown -R www-data:www-data /usr/share/nginx /var/run/nginx /var/tmp/nginx
 COPY conf/nginx.conf /etc/nginx/nginx.conf
 USER www-data:www-data

@@ -1,4 +1,4 @@
-FROM ubi8/s2i-core:rhel8.3
+FROM nginx:1.16
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV NODEJS_VERSION 10.16.0
@@ -35,13 +35,18 @@ RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources
 RUN apt-get update -y \
  && apt-get install yarn -y
 
+RUN useradd -u 5000 www-data \
+ && mkdir -p /var/run/nginx /var/tmp/nginx \
+ && chown -R www-data:www-data /usr/share/nginx /var/run/nginx /var/tmp/nginx
+COPY conf/nginx.conf /etc/nginx/nginx.conf
+USER www-data:www-data
 COPY docker/cnil-pia-front/conf/cnil_pia.conf /etc/nginx/conf.d/default.conf
 
 RUN mkdir -p /var/www && chown www-data. /var/www/
 
 USER www-data
 
-RUN git clone --branch $PIA_VERSION https://github.com/LINCnil/pia.git --depth 1 /var/www/pia
+RUN git clone --branch $PIA_VERSION https://github.com/CQEN-QDCE/pia --depth 1 /var/www/pia
 
 WORKDIR /var/www/pia
 

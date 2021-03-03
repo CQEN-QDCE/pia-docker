@@ -1,4 +1,4 @@
-FROM nginx:1.16
+FROM ubi8/s2i-core:rhel8.3
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV NODEJS_VERSION 10.16.0
@@ -27,6 +27,7 @@ RUN  /usr/bin/npm install npm@latest -g \
  && /usr/bin/npm install --unsafe-perm -g node-sass \
  && /usr/bin/npm install -g @angular/cli
 
+
 # Add Yarn repository
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
@@ -36,11 +37,11 @@ RUN apt-get update -y \
 
 COPY docker/cnil-pia-front/conf/cnil_pia.conf /etc/nginx/conf.d/default.conf
 
-RUN mkdir -p /var/www
-RUN chown www-data /var/www
+RUN mkdir -p /var/www && chown www-data. /var/www/
+
 USER www-data
 
-RUN git clone --branch $PIA_VERSION https://github.com/CQEN-QDCE/pia.git --depth 1 /var/www/pia
+RUN git clone --branch $PIA_VERSION https://github.com/LINCnil/pia.git --depth 1 /var/www/pia
 
 WORKDIR /var/www/pia
 
@@ -49,3 +50,9 @@ RUN yarn install \
  && cp src/environments/environment.prod.ts.example src/environments/environment.prod.ts \
  && sed -i -e "s/version: '2.0.0'/version: '$PIA_VERSION'/g" src/environments/environment.prod.ts \
  && /var/www/pia/node_modules/@angular/cli/bin/ng build --prod --build-optimizer
+
+USER root
+#Cleaning Packages
+RUN apt-get remove git ca-certificates wget xz-utils sudo curl gnupg apt-transport-https  yarn -y \
+ && apt-get autoremove -y \
+ && rm -Rf /etc/apt/sources.list.d/yarn.list

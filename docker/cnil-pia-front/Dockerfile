@@ -37,7 +37,6 @@ RUN apt-get update -y \
 
 RUN mkdir -p /var/run/nginx /var/tmp/nginx \
  && chown -R www-data:www-data /usr/share/nginx /var/run/nginx /var/tmp/nginx
-COPY conf/nginx.conf /etc/nginx/nginx.conf
 USER www-data:www-data
 COPY docker/cnil-pia-front/conf/cnil_pia.conf /etc/nginx/conf.d/default.conf
 

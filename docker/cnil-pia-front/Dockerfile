@@ -36,11 +36,9 @@ RUN apt-get update -y \
 
 COPY docker/cnil-pia-front/conf/cnil_pia.conf /etc/nginx/conf.d/default.conf
 
-RUN chown www-data /var/www/
-
-USER www-data
-
 RUN mkdir -p /var/www
+RUN chown www-data /var/www
+USER www-data
 
 RUN git clone --branch $PIA_VERSION https://github.com/CQEN-QDCE/pia.git --depth 1 /var/www/pia
 
@@ -51,9 +49,3 @@ RUN yarn install \
  && cp src/environments/environment.prod.ts.example src/environments/environment.prod.ts \
  && sed -i -e "s/version: '2.0.0'/version: '$PIA_VERSION'/g" src/environments/environment.prod.ts \
  && /var/www/pia/node_modules/@angular/cli/bin/ng build --prod --build-optimizer
-
-USER root
-#Cleaning Packages
-RUN apt-get remove git ca-certificates wget xz-utils sudo curl gnupg apt-transport-https  yarn -y \
- && apt-get autoremove -y \
- && rm -Rf /etc/apt/sources.list.d/yarn.list

@@ -40,7 +40,8 @@ RUN mkdir -p /var/run/nginx /var/tmp/nginx \
 USER www-data:www-data
 COPY docker/cnil-pia-front/conf/cnil_pia.conf /etc/nginx/conf.d/default.conf
 
-RUN mkdir -p /var/www && chown www-data. /var/www/
+RUN mkdir -p /var/www
+RUN chown www-data /var/www
 
 USER www-data
 

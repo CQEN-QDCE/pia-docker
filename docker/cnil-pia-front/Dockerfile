@@ -35,10 +35,9 @@ RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources
 RUN apt-get update -y \
  && apt-get install yarn -y
 
+COPY docker/cnil-pia-front/conf/cnil_pia.conf /etc/nginx/conf.d/default.conf
 RUN mkdir -p /var/run/nginx /var/tmp/nginx \
  && chown -R www-data:www-data /usr/share/nginx /var/run/nginx /var/tmp/nginx
-USER www-data:www-data
-COPY docker/cnil-pia-front/conf/cnil_pia.conf /etc/nginx/conf.d/default.conf
 
 RUN mkdir -p /var/www
 RUN chown www-data /var/www

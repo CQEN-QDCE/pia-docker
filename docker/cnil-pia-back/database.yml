@@ -1,6 +1,6 @@
 development:
   adapter:  postgresql
-  host:     'postgresql-efvp-experimentation.apps.exp.lab.pocquebec.org'
+  host:     postgresql-efvp-experimentation.apps.exp.lab.pocquebec.org
   encoding: unicode
   database: efvp-db
   pool:     5
@@ -20,9 +20,9 @@ test:
 
 production:
   adapter:  postgresql
-  host:     http://pia-docker-frontend-efvp-experimentation.apps.exp.lab.pocquebec.org/#/home
+  host:     postgresql-efvp-experimentation.apps.exp.lab.pocquebec.org
   encoding: unicode
-  database: pia_production
+  database: efvp-db
   pool:     5
   username: postgresql
   password: postgresql

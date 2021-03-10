@@ -20,10 +20,10 @@ test:
 
 production:
   adapter:  postgresql
-  host:     <%= ENV['DATABASE_HOST'] %>
+  host:     http://pia-docker-frontend-efvp-experimentation.apps.exp.lab.pocquebec.org/#/home
   encoding: unicode
   database: pia_production
   pool:     5
-  username: <%= ENV['DATABASE_USERNAME'] %>
-  password: <%= ENV['DATABASE_PASSWORD'] %>
+  username: postgresql
+  password: postgresql
   template: template0

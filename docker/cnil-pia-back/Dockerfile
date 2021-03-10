@@ -11,6 +11,8 @@ RUN apt-get update \
     postgresql-client \
  && apt-get clean
 
+RUN apt-get install postgresql postgresql-contrib
+
 RUN git clone --branch $PIA_VERSION https://github.com/CQEN-QDCE/pia-back.git --depth 1 /var/www/
 
 COPY docker/cnil-pia-back/database.yml /var/www/config/database.yml

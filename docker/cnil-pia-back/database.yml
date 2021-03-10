@@ -2,7 +2,7 @@ development:
   adapter:  postgresql
   host:     postgresql-efvp-experimentation.apps.exp.lab.pocquebec.org
   encoding: unicode
-  database: efvp-db
+  database: postgres
   pool:     5
   username: postgresql
   password: postgresql
@@ -22,7 +22,7 @@ production:
   adapter:  postgresql
   host:     postgresql-efvp-experimentation.apps.exp.lab.pocquebec.org
   encoding: unicode
-  database: efvp-db
+  database: postgres
   pool:     5
   username: postgresql
   password: postgresql

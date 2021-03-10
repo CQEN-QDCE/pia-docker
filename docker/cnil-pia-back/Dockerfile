@@ -9,9 +9,10 @@ RUN apt-get update \
  && apt-get install --no-install-recommends -y \
     git \
     postgresql-client \
+    postgresql \
+    postgresql-contrib \
  && apt-get clean
 
-RUN apt-get install postgresql postgresql-contrib
 
 RUN git clone --branch $PIA_VERSION https://github.com/CQEN-QDCE/pia-back.git --depth 1 /var/www/
 

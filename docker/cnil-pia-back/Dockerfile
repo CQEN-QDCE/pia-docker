@@ -22,6 +22,7 @@ COPY docker/cnil-pia-back/application.yml /var/www/config/application.yml
 WORKDIR /var/www/
 
 RUN gem install bundler
+RUN bundle update nokogiri marcel mimemagic
 RUN bundle install
 
 COPY docker/cnil-pia-back/entrypoint /entrypoint

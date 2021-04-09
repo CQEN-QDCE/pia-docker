@@ -14,7 +14,7 @@ RUN apt-get update \
  && apt-get clean
 
 
-RUN git clone --branch $PIA_VERSION https://github.com/CQEN-QDCE/pia-back.git --depth 1 /var/www/
+RUN git clone --branch $PIA_VERSION https://github.com/LINCnil/pia-back.git --depth 1 /var/www/
 
 COPY docker/cnil-pia-back/database.yml /var/www/config/database.yml
 COPY docker/cnil-pia-back/application.yml /var/www/config/application.yml

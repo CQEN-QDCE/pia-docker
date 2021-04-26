@@ -1,4 +1,4 @@
-FROM ruby:2.6.2
+FROM ruby:2.6.5
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV PIA_VERSION 2.2.0
@@ -14,7 +14,7 @@ RUN apt-get update \
  && apt-get clean
 
 
-RUN git clone --branch $PIA_VERSION https://github.com/CQEN-QDCE/pia-back.git --depth 1 /var/www/
+RUN git clone --branch master https://github.com/CQEN-QDCE/pia-back.git --depth 1 /var/www/
 
 COPY docker/cnil-pia-back/database.yml /var/www/config/database.yml
 COPY docker/cnil-pia-back/application.yml /var/www/config/application.yml
